@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,11 +13,16 @@ public class PlayerController : MonoBehaviour
     public bool isGameOver = false;
     private Animator playerAmin;
     public ParticleSystem DirtPartical;
+    public GameObject gameOverText;
+    public Button restartButton;
+    public static GameManager gameManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
         playerAmin = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -86,8 +93,16 @@ public class PlayerController : MonoBehaviour
         if(GameManager.lifeLimit == 0)
         {
             playerAmin.SetBool("Death", true);
+            gameOverText.gameObject.SetActive(true);
             isGameOver = true;
+            restartButton.gameObject.SetActive(true);
             Debug.Log("Game Over");
         }
+    }
+    public void Restart()
+    {
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.lifeLimit = 3;
     }
 }

@@ -33,8 +33,13 @@ public class SpawnPosition : MonoBehaviour
     {
         for(int i = 0; i < ObstacleNumbers; i++)
         {
-            obstacles[i].SetActive(true);
-            yield return new WaitForSeconds(spawnDelay);
+            if (playerControllerScript.isGameOver != true)
+            {
+                obstacles[i].SetActive(true);
+                yield return new WaitForSeconds(spawnDelay);
+
+            }
+
         }
     }
     // random selection of obstacle

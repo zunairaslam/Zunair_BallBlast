@@ -20,14 +20,16 @@ public class SpawnObstacles : ObstacleController
     }
     public override void destoryObstacle()
     {
+        if (playerControllerScript.isGameOver != true)
+        {
+            seperatObstacle();
+            Destroy(gameObject);
+        }
 
-        seperatObstacle();
-        Destroy(gameObject);
     }
     void seperatObstacle()
     {
-        if (playerControllerScript.isGameOver == false)
-        {
+        
             GameObject Obs;
             for (int i = 0; i < divine.Length; i++)
             {
@@ -35,6 +37,6 @@ public class SpawnObstacles : ObstacleController
                 Obs.GetComponent<Rigidbody>().velocity = new Vector3(leftAndRight[i], 5f, 0);
 
             }
-        }
+        
     }
 }

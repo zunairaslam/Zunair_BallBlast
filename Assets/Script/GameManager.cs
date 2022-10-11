@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(lifeLimit);
         Number.text = score.ToString();
         if (lifeLimit == 0)
         {

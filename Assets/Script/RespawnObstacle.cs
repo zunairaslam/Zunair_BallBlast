@@ -23,15 +23,16 @@ public class RespawnObstacle : ObstacleController
     // calling from obstaclecontroller tak position of obstacle to respawn
     public override void destoryObstacle()
     {
-       
-        seperatObstacle();
-        Destroy(gameObject);
+        if (playerControllerScript.isGameOver != true)
+        {
+            seperatObstacle();
+            Destroy(gameObject);
+        }
     }
     // respawn again on that position
     void seperatObstacle()
     {
-        if (playerControllerScript.isGameOver == false)
-        {
+       
             GameObject Obs;
             for (int i = 0; i < divine.Length; i++)
             {
@@ -39,7 +40,7 @@ public class RespawnObstacle : ObstacleController
                 Obs.GetComponent<Rigidbody>().velocity = new Vector3(leftAndRight[i], 5f, 0);
 
             }
-        }
+        
     }
         
 }
